@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-
-const ProductForm = () => {
+const ProductForm = (props) => {
+    const { product, setProduct } = props;
 
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState(0);
@@ -15,11 +15,11 @@ const ProductForm = () => {
             price,
             description
         })
-            .then(res =>{
-                console.log(res)
-                console.log(res.data)
+            .then(res => {
+                console.log("this is coming from Product Form", res.data);
+                setProduct([...product, res.data]);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 
     return (
@@ -56,4 +56,5 @@ const ProductForm = () => {
         </div>
     );
 };
+
 export default ProductForm;
